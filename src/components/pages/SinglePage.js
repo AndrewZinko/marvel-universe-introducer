@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+
 import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
@@ -38,7 +40,13 @@ const SinglePage = ({BaseComponent, type}) => {
     const content = !(loading || error || !data) ? data : null;
 
     return (
-        <BaseComponent errorMessage={errorMessage} spinner={spinner} content={content}/>
+        <>
+            <Helmet>
+                <meta name="description" content={content?.description}/>
+                <title>{content?.title}</title>
+            </Helmet>
+            <BaseComponent errorMessage={errorMessage} spinner={spinner} content={content}/>
+        </>
     );
 }
 
