@@ -43,7 +43,7 @@ const SinglePage = ({BaseComponent, type}) => {
         <>
             <Helmet>
                 <meta name="description" content={content?.description}/>
-                <title>{content?.title}</title>
+                <title>{type === 'comic' ? content?.title : content?.name}</title>
             </Helmet>
             <BaseComponent errorMessage={errorMessage} spinner={spinner} content={content}/>
         </>
